@@ -69,8 +69,8 @@ class UserController extends BaseController
         // Validation rules
         $validator = Validator::make($request->all(), [
             'name' => 'sometimes|required|string|max:255',
-            'email' => 'nullable|email|unique:users,email,' . Auth::id(),
-            'phone' => 'sometimes|required|string|unique:users,phone,' . Auth::id(),
+            'email' => 'sometimes|email|unique:users,email,' . Auth::id(),
+            'phone' => 'sometimes|string|unique:users,phone,' . Auth::id(),
             'photo' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:512',
         ]);
 
@@ -110,10 +110,10 @@ class UserController extends BaseController
     {
         // Load only the groups along with main and assistant teachers for the authenticated student
         $user = Auth::user()->load([
-            'groups.mainTeacher', 
-            'groups.assistantTeacher', 
-            'groups.students', 
-            'groups.subject',   
+            'groups.mainTeacher',
+            'groups.assistantTeacher',
+            'groups.students',
+            'groups.subject',
             'groups.classes.day',
             'groups.classes.room'
         ]);
