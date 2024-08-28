@@ -69,9 +69,9 @@ class UserController extends BaseController
         // Validation rules
         $validator = Validator::make($request->all(), [
             'name' => 'sometimes|required|string|max:255',
-            'email' => 'sometimes|email|unique:users,email,' . Auth::id(),
-            'phone' => 'sometimes|string|unique:users,phone,' . Auth::id(),
-            'photo' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+            'email' => 'sometimes|nullable|email|unique:users,email,' . Auth::id(),
+            'phone' => 'sometimes|nullable|string|unique:users,phone,' . Auth::id(),
+            'photo' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:512',
         ]);
 
         // Handle validation errors
